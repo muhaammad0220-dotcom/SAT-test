@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAT mashq testlari</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#1d2433;--mute:#667085;--line:#d0d5dd;--blue:#1a4fd6;--blue-l:#e8eefc;--ok:#18794e;--bad:#c5221f;--card:#f6f7f9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161f;--ink:#e8ebf2;--mute:#9aa3b5;--line:#2e3646;--blue:#7b9cff;--blue-l:#1c2640;--ok:#4cc38a;--bad:#ff7b72;--card:#1a202c}}
+:root[data-theme="dark"]{--bg:#12161f;--ink:#e8ebf2;--mute:#9aa3b5;--line:#2e3646;--blue:#7b9cff;--blue-l:#1c2640;--ok:#4cc38a;--bad:#ff7b72;--card:#1a202c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Source Sans 3",system-ui,sans-serif}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px;position:relative;z-index:1}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:22px;margin:0 0 8px}
+.mute{color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:999px;padding:10px 24px;font-weight:600}
+.btn.ghost{background:none;color:var(--blue);border:2px solid var(--blue)}
+.btn:disabled{opacity:.4;cursor:default}
+input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+label.opt{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:8px;margin:8px 0;cursor:pointer;background:var(--bg)}
+label.opt.on{border-color:var(--blue);background:var(--blue-l)}
+.tabs{display:flex;gap:8px;margin-bottom:8px}
+.tab{background:none;border:0;padding:8px 4px;font-weight:600;color:var(--mute);border-bottom:3px solid transparent}
+.tab.on{color:var(--blue);border-color:var(--blue)}
+.ocean{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;--sk1:#6cb0dc;--sk2:#e9f5fa;--sun:#fff1c2;--cl:#fff;--s1:#79c6d8;--s2:#1b88aa;--s3:#0b4a6b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ocean{--sk1:#0a1228;--sk2:#2b4272;--sun:#e9b27a;--cl:#52689c;--s1:#1f4d78;--s2:#112f50;--s3:#07172b}}
+:root[data-theme="dark"] .ocean{--sk1:#0a1228;--sk2:#2b4272;--sun:#e9b27a;--cl:#52689c;--s1:#1f4d78;--s2:#112f50;--s3:#07172b}
+.ocean svg{position:absolute;inset:0;width:100%;height:100%}
+.wv{animation:wv linear infinite}
+.wv.rv{animation-direction:reverse}
+.gl{animation:tw 3.2s ease-in-out infinite alternate}
+.cl{animation:cl 70s ease-in-out infinite alternate}
+@keyframes wv{to{transform:translateX(-1600px)}}
+@keyframes tw{from{opacity:.1}to{opacity:.85}}
+.sr{animation:sr ease-in-out infinite alternate}
+@keyframes sr{0%{opacity:.05}55%{opacity:1}100%{opacity:.3}}
+@keyframes cl{to{transform:translateX(160px)}}
+
+@media (prefers-reduced-motion:reduce){.wv,.gl,.cl,.sr{animation:none}}
+.ocean~.wrap .card{background:color-mix(in srgb,var(--card) 88%,transparent)}
+.panel{background:color-mix(in srgb,var(--bg) 92%,transparent);border-radius:12px;padding:8px 16px 16px}
+.calc{position:fixed;right:12px;bottom:calc(76px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100vw - 24px));max-height:calc(100vh - 150px);overflow:auto;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);z-index:8;padding:10px 12px}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cr{display:flex;gap:8px;align-items:center;margin:6px 0}.dot{width:12px;height:12px;border-radius:50%;flex:none}
+#cv{width:100%;height:230px;border:1px solid var(--line);border-radius:8px;touch-action:none;display:block;margin-top:8px}
+.cf{display:flex;gap:8px;margin-top:8px}.cf .btn{padding:4px 14px}
+.calc[hidden]{display:none}
+.calc.dz{width:min(480px,calc(100vw - 24px));height:min(520px,calc(100vh - 160px));overflow:hidden}
+.kp{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.kb{flex:1;min-width:34px;padding:6px 0;border:1px solid var(--line);background:var(--card);border-radius:8px;font-size:17px}
+.cr input{flex:1;min-width:0}.rs{color:var(--mute);white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:600px){.calc{left:8px;right:8px;width:auto;bottom:calc(70px + env(safe-area-inset-bottom,0px));max-height:72vh}}
+/* test screen */
+.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:2px dashed var(--line);display:flex;align-items:center;justify-content:space-between;padding:10px 16px;z-index:5}
+.timer{text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.timer button{display:block;margin:0 auto;border:1px solid var(--line);background:none;border-radius:999px;font-size:13px;padding:0 10px}
+.qhead{display:flex;justify-content:space-between;align-items:center;background:var(--card);border-bottom:1px solid var(--line);padding:6px 12px;margin:0 -16px 14px}
+.qnum{background:var(--ink);color:var(--bg);font-weight:700;padding:2px 12px;border-radius:4px}
+.flag{background:none;border:0;color:var(--mute);font-weight:600}.flag.on{color:var(--bad)}
+.choice{display:flex;align-items:center;gap:8px;margin:10px 0}
+.choice label{flex:1;display:flex;gap:12px;align-items:center;padding:12px;border:2px solid var(--line);border-radius:10px;cursor:pointer}
+.choice label.on{border-color:var(--blue);background:var(--blue-l)}
+.choice.cut label span.t{text-decoration:line-through;opacity:.45}
+.letter{width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-weight:700;flex:none}
+.on .letter{background:var(--blue);border-color:var(--blue);color:#fff}
+.cutb{border:1px solid var(--line);background:none;border-radius:50%;width:28px;height:28px;color:var(--mute)}
+.foot{position:sticky;bottom:env(safe-area-inset-bottom,0px);background:var(--bg);border-top:2px dashed var(--line);display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;margin:12px 0}
+.gn{height:44px;border:1px dashed var(--blue);background:none;border-radius:6px;font-weight:700;color:var(--blue)}
+.gn.done{border-style:solid;background:var(--blue);color:#fff}.gn.cur{outline:3px solid var(--ink)}
+.gn.fl::after{content:"⚑";font-size:11px;position:relative;top:-14px;right:-14px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:9;padding:16px}
+.modal>div{background:var(--bg);border-radius:12px;padding:18px;max-width:520px;width:100%;max-height:85vh;overflow:auto}
+.big{font-size:56px;font-weight:700;line-height:1;color:var(--blue)}
+table{width:100%;border-collapse:collapse}th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}
+.scroll{overflow-x:auto}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+.rev{border-left:4px solid var(--line);padding:6px 12px;margin:12px 0}.rev.r{border-color:var(--ok)}.rev.w{border-color:var(--bad)}
+</style>
+<!-- Desmos API kaliti: sinash uchun demo kalit. O'z kalitingizni desmos.com/my-api dan olib, apiKey= dan keyin almashtiring -->
+<script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ===== TESTLAR (yangi test qo'shish uchun shu ro'yxatga obyekt qo'shiladi) ===== */
+const TESTS=[{id:"namuna-1",title:"Namuna test 1 · Math",minutes:15,questions:[
+{t:"mc",q:"If 3x + 7 = 25, what is the value of x?",o:["4","6","8","18"],a:1,e:"3x = 18, so x = 6."},
+{t:"mc",q:"The function f is defined by f(x) = x² − 3x + 2. What is the value of f(4)?",o:["2","4","6","10"],a:2,e:"f(4) = 16 − 12 + 2 = 6."},
+{t:"mc",q:"A pyramid has a square base with side length 6 and a height of 5. What is its volume?",o:["30","60","90","180"],a:1,e:"V = ⅓·(6·6)·5 = 60."},
+{t:"mc",q:"Which expression is equivalent to (x + 4)²?",o:["x² + 16","x² + 8x + 16","x² + 4x + 16","x² + 8x + 8"],a:1,e:"(x+4)² = x² + 8x + 16."},
+{t:"spr",q:"If 2(x − 3) = 14, what is the value of x?",a:["10"],e:"x − 3 = 7, so x = 10."},
+{t:"spr",q:"A rectangle has a perimeter of 36 and a length of 11. What is its area?",a:["77"],e:"Width = 18 − 11 = 7, area = 11·7 = 77."}]}];
+/* ===== Holat ===== */
+const $=s=>document.querySelector(s),app=$("#app");
+let S={view:"home",tab:"tests",uid:null,back:"tests",name:"",test:null,timer:true,showClock:true,i:0,ans:[],cut:[],flag:[],left:0,tick:null,res:null,owner:false,db:null,results:[],note:""};
+const L=["A","B","C","D"];
+const SCENE=(()=>{const wl=(y,n,a,s,o,d,r)=>{const w=1600/n,h=w/2,c=Math.round(3200/h);let p=`M0 ${y}Q${w/4} ${y-a} ${h} ${y}`;for(let k=2;k<=c;k++)p+=`T${+(k*h).toFixed(1)} ${y}`;return `<g class="wv${r?" rv":""}" style="animation-duration:${d}s"><path d="${p}" fill="none" stroke="#fff" stroke-width="${s}" stroke-linecap="round" opacity="${o}"/></g>`};
+let s="";for(let i=0;i<48;i++){const r=Math.random(),z=.7+r*r*1.6,y=8+Math.random()*230;s+=`<circle class="sr" cx="${(Math.random()*1600).toFixed(0)}" cy="${y.toFixed(0)}" r="${z.toFixed(1)}" fill="#fff" fill-opacity="${(1-y/300).toFixed(2)}" style="animation-duration:${(2+Math.random()*4).toFixed(1)}s;animation-delay:-${(Math.random()*6).toFixed(1)}s"/>`}
+let g="";for(let i=0;i<22;i++){const y=490+i*13,w=16+(y-490)*.8,x=800-w/2+Math.sin(i*7.3)*w*.25;g+=`<rect class="gl" x="${x.toFixed(0)}" y="${y}" width="${w.toFixed(0)}" height="2.5" rx="1.2" fill="#fff" style="animation-delay:-${(i*.41%3.2).toFixed(2)}s"/>`}
+const st=(o,c,p)=>`<stop offset="${o}" style="stop-color:var(${c})${p===undefined?"":";stop-opacity:"+p}"/>`;
+return `<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1">${st(0,"--sk1")}${st(1,"--sk2")}</linearGradient><radialGradient id="sn">${st(0,"--sun",.95)}${st(1,"--sun",0)}</radialGradient><linearGradient id="se" x1="0" y1="0" x2="0" y2="1">${st(0,"--s1")}${st(.4,"--s2")}${st(1,"--s3")}</linearGradient><linearGradient id="hz" x1="0" y1="0" x2="0" y2="1">${st(0,"--sk2",0)}${st(.5,"--sk2",.85)}${st(1,"--sk2",0)}</linearGradient><filter id="bl"><feGaussianBlur stdDeviation="12"/></filter></defs><rect width="1600" height="470" fill="url(#sk)"/>${s}<ellipse cx="800" cy="470" rx="640" ry="300" fill="url(#sn)"/><g class="cl" filter="url(#bl)" opacity=".65" style="fill:var(--cl)"><ellipse cx="260" cy="130" rx="190" ry="26"/><ellipse cx="380" cy="152" rx="150" ry="20"/><ellipse cx="1180" cy="90" rx="220" ry="28"/><ellipse cx="1330" cy="116" rx="160" ry="20"/><ellipse cx="760" cy="250" rx="170" ry="18"/></g><rect y="470" width="1600" height="430" fill="url(#se)"/><rect y="440" width="1600" height="70" fill="url(#hz)"/>${g}${wl(490,20,1.5,1,.35,90)}${wl(512,16,2,1.2,.35,80,1)}${wl(536,12,3,1.5,.3,70)}${wl(580,10,5,2,.28,55,1)}${wl(630,8,7,2.5,.26,45)}${wl(690,6,10,3,.24,38,1)}${wl(770,5,14,4,.22,32)}${wl(850,4,18,5,.2,26,1)}</svg>`})();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+/* ===== Ball: raw -> 200-800 (taxminiy chiziqli shkala) ===== */
+const scaled=(r,n)=>Math.round((200+600*r/n)/10)*10;
+const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+const norm=v=>String(v||"").trim().replace(/\s+/g,"").replace(",",".");
+const isOk=(q,a)=>q.t==="mc"?a===q.a:q.a.some(x=>norm(x)===norm(a));
+/* ===== Saqlash: db bo'lsa umumiy, bo'lmasa shu qurilmada ===== */
+async function init(){
+  try{const u=await claude.use("user");S.owner=u?await u.isOwner():false;if(u)S.uid=await u.id();}catch(e){}
+  if(!S.owner)S.owner=location.hash==="#admin";
+  try{S.db=await claude.use("db");}catch(e){}
+  if(S.db){S.db.collection("results").onSnapshot(sn=>{S.results=sn.docs.map(d=>d.data());if(S.view==="home"&&S.tab!=="tests")render()},()=>{})}
+  render();
+}
+async function saveResult(r){
+  let saved=false;
+  if(S.db){try{await S.db.collection("results").doc(r.id).set(r);saved=true}catch(e){}}
+  try{const k=JSON.parse(localStorage.getItem("sat_results")||"[]");k.push(r);localStorage.setItem("sat_results",JSON.stringify(k))}catch(e){}
+  S.note=saved?"Natija o'qituvchiga yuborildi.":"Natija faqat shu qurilmada saqlandi (o'qituvchiga yuborilmadi).";
+}
+function localResults(){try{return JSON.parse(localStorage.getItem("sat_results")||"[]")}catch(e){return[]}}
+/* ===== Ekranlar ===== */
+function render(){
+  if(S.view!=="test")closeCalc();
+  clearInterval(S.tick);
+  if(S.view==="home")home();else if(S.view==="test")testView();else if(S.view==="result")resultView();
+  if(S.view==="test"&&S.timer){S.tick=setInterval(()=>{S.left=Math.round((S.end-Date.now())/1000);const c=$("#clk");if(c)c.textContent=fmt(Math.max(S.left,0));if(S.left<=0)finish()},1000)}
+}
+function home(){
+  let h=`<div class="ocean" aria-hidden="true">${SCENE}</div><div class="wrap"><h1>SAT mashq testlari</h1><p class="mute">Uy ishi uchun testlar.</p>`;
+  h+=`<div class="tabs"><button class="tab ${S.tab==="tests"?"on":""}" data-tab="tests">Testlar</button><button class="tab ${S.tab==="me"?"on":""}" data-tab="me">Dashboard</button>${S.owner?`<button class="tab ${S.tab==="admin"?"on":""}" data-tab="admin">Natijalar (admin)</button>`:""}</div>`;
+  if(S.tab==="me"){h+=mine()}else if(S.tab==="admin"&&S.owner){
+    const rs=(S.results.length?S.results:localResults()).slice().sort((a,b)=>b.at-a.at);
+    h+=`<div class="panel">`+dash(rs)+`<h2 style="margin-top:24px">Barcha natijalar</h2>`+(rs.length?`<div class="scroll"><table><tr><th>Ism</th><th>Test</th><th>To'g'ri</th><th>Ball</th><th>Taymer</th><th>Sana</th></tr>`+rs.map((r,i)=>`<tr data-r="${i}" style="cursor:pointer"><td>${esc(r.name)}</td><td>${esc(r.title)}</td><td>${r.raw}/${r.n}</td><td><b>${r.score}</b></td><td>${r.timer?"bor":"yo'q"}</td><td>${new Date(r.at).toLocaleString("uz")}</td></tr>`).join("")+`</table></div><p class="mute">Qatorni bosing: javoblar tafsiloti ochiladi.</p>`:`<p class="mute">Hozircha natija yo'q.</p>`);
+    h+=`</div>`;S._rs=rs;
+  }else{
+    h+=`<div class="card"><label for="nm"><b>Ismingiz</b></label><input id="nm" type="text" value="${esc(S.name)}" placeholder="Ism va familiya" autocomplete="name"></div>`;
+    h+=TESTS.map(t=>`<div class="card"><h2>${esc(t.title)}</h2><p class="mute">${t.questions.length} ta savol · tavsiya etilgan vaqt: ${t.minutes} daqiqa</p><button class="btn" data-start="${t.id}">Boshlash</button></div>`).join("");
+  }
+  app.innerHTML=h+`</div>`;
+  app.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{S.tab=b.dataset.tab;render()});
+  const nm=$("#nm");if(nm)nm.oninput=e=>S.name=e.target.value;
+  app.querySelectorAll("[data-start]").forEach(b=>b.onclick=()=>{if(!S.name.trim()){nm.focus();nm.style.borderColor="var(--bad)";return}startDialog(b.dataset.start)});
+  app.querySelectorAll("tr[data-r]").forEach(tr=>tr.onclick=()=>{S.res=S._rs[tr.dataset.r];S.admin=S.tab==="admin";S.back=S.tab;S.note="";S.view="result";render()});
+}
+function mine(){
+  const seen={},rs=[];
+  [...S.results.filter(r=>S.uid&&r.uid===S.uid),...localResults()].forEach(r=>{if(!seen[r.id]){seen[r.id]=1;rs.push(r)}});
+  rs.sort((a,b)=>b.at-a.at);S._rs=rs;
+  if(!rs.length)return `<div class="card"><h2>Hali natija yo'q</h2><p class="mute">Test topshirgach, natijalaringiz shu yerda ko'rinadi.</p></div>`;
+  const avg=Math.round(rs.reduce((x,r)=>x+r.score,0)/rs.length),best=Math.max(...rs.map(r=>r.score));
+  const card=(v,l)=>`<div class="card" style="flex:1;min-width:120px;text-align:center;margin:0"><div class="big" style="font-size:34px">${v}</div><div class="mute">${l}</div></div>`;
+  return `<div class="panel"><h2>Mening natijalarim</h2><div style="display:flex;gap:10px;flex-wrap:wrap">${card(rs.length,"topshirilgan test")}${card(avg,"o'rtacha ball")}${card(best,"eng yaxshi ball")}</div><div class="scroll" style="margin-top:14px"><table><tr><th>Test</th><th>To'g'ri</th><th>Ball</th><th>Taymer</th><th>Sana</th></tr>`+rs.map((r,i)=>`<tr data-r="${i}" style="cursor:pointer"><td>${esc(r.title)}</td><td>${r.raw}/${r.n}</td><td><b>${r.score}</b></td><td>${r.timer?"bor":"yo'q"}</td><td>${new Date(r.at).toLocaleDateString("uz")}</td></tr>`).join("")+`</table></div><p class="mute">Qatorni bosing: javoblar va izohlar ochiladi.${S.db?"":" Natijalar faqat shu qurilmada saqlangan."}</p></div>`;
+}
+function dash(rs){
+  if(!rs.length)return"";
+  const avg=a=>a.length?Math.round(a.reduce((x,y)=>x+y,0)/a.length):0;
+  const by=f=>{const m={};rs.forEach(r=>(m[f(r)]=m[f(r)]||[]).push(r));return Object.entries(m)};
+  const names=by(r=>r.name.toLowerCase()),tests=by(r=>r.testId);
+  const card=(v,l)=>`<div class="card" style="flex:1;min-width:130px;text-align:center;margin:0"><div class="big" style="font-size:34px">${v}</div><div class="mute">${l}</div></div>`;
+  const pct=Math.round(100*rs.reduce((x,r)=>x+r.raw,0)/rs.reduce((x,r)=>x+r.n,0));
+  let h=`<h2>Dashboard</h2><div style="display:flex;gap:10px;flex-wrap:wrap">${card(rs.length,"topshirilgan test")}${card(names.length,"o'quvchi")}${card(avg(rs.map(r=>r.score)),"o'rtacha ball")}${card(pct+"%","to'g'ri javoblar")}</div>`;
+  h+=`<h2 style="margin-top:20px">Testlar bo'yicha</h2><div class="scroll"><table><tr><th>Test</th><th>Topshirdi</th><th>O'rtacha</th><th>Eng yuqori</th><th>Eng past</th></tr>`+tests.map(([,a])=>{const s=a.map(r=>r.score);return `<tr><td>${esc(a[0].title)}</td><td>${a.length}</td><td>${avg(s)}</td><td>${Math.max(...s)}</td><td>${Math.min(...s)}</td></tr>`}).join("")+`</table></div>`;
+  h+=tests.map(([id,a])=>{const t=TESTS.find(x=>x.id===id);if(!t)return"";const acc=t.questions.map((q,k)=>({k,p:Math.round(100*a.filter(r=>r.det&&r.det[k]&&r.det[k].ok).length/a.length)})).sort((x,y)=>x.p-y.p).slice(0,3);return `<p class="mute"><b>${esc(t.title)}</b>: eng qiyin savollar: `+acc.map(x=>`${x.k+1}-savol (${x.p}% to'g'ri)`).join(", ")+`</p>`}).join("");
+  h+=`<h2 style="margin-top:20px">O'quvchilar bo'yicha</h2><div class="scroll"><table><tr><th>Ism</th><th>Testlar</th><th>O'rtacha</th><th>Eng yaxshi</th><th>Oxirgi topshirgan</th></tr>`+names.map(([,a])=>{const s=a.map(r=>r.score),l=a.reduce((x,r)=>r.at>x.at?r:x);return `<tr><td>${esc(a[0].name)}</td><td>${a.length}</td><td>${avg(s)}</td><td>${Math.max(...s)}</td><td>${new Date(l.at).toLocaleDateString("uz")}</td></tr>`}).join("")+`</table></div>`;
+  return h;
+}
+let CP=null;
+function closeCalc(){if(CP){try{CP._dm&&CP._dm.destroy()}catch(e){}CP.remove();CP=null}}
+function resetCalc(){closeCalc()}
+function toggleCalc(){
+  if(!CP){openCalc();return}
+  CP.hidden=!CP.hidden;
+  if(!CP.hidden&&CP._dm)try{CP._dm.resize()}catch(e){}
+}
+function openCalc(){
+  CP=document.createElement("div");CP.className="calc dz";
+  CP.innerHTML=`<div class="ch"><b>Desmos</b><button class="cutb" id="cx" aria-label="Yopish">\u2715</button></div><div id="dm" style="width:100%;height:calc(100% - 36px)"></div>`;
+  document.body.appendChild(CP);
+  CP.querySelector("#cx").onclick=()=>{CP.hidden=true};
+  const el=CP.querySelector("#dm");
+  if(window.Desmos){CP._dm=Desmos.GraphingCalculator(el,{keypad:true,expressions:true,settingsMenu:false,zoomButtons:true})}
+  else el.innerHTML='<p class="mute" style="padding:12px">Desmos yuklanmadi. Internetni tekshirib, sahifani yangilang.</p>';
+}
+function startDialog(id){
+  const t=TESTS.find(x=>x.id===id);S.timer=true;
+  const m=document.createElement("div");m.className="modal";
+  m.innerHTML=`<div role="dialog" aria-label="Testni boshlash"><h2>${esc(t.title)}</h2><p class="mute">Taymerni yoqasizmi? Test boshlangach o'zgartirib bo'lmaydi.</p>
+  <label class="opt on" id="o1"><input type="radio" name="tm" checked> Taymer bilan (${t.minutes} daqiqa)</label>
+  <label class="opt" id="o2"><input type="radio" name="tm"> Taymersiz</label>
+  <p style="display:flex;gap:10px;justify-content:flex-end"><button class="btn ghost" id="cn">Bekor qilish</button><button class="btn" id="go">Testni boshlash</button></p></div>`;
+  document.body.appendChild(m);
+  const set=v=>{S.timer=v;$("#o1").classList.toggle("on",v);$("#o2").classList.toggle("on",!v)};
+  $("#o1").onclick=()=>set(true);$("#o2").onclick=()=>set(false);
+  $("#cn").onclick=()=>m.remove();
+  $("#go").onclick=()=>{m.remove();resetCalc();S.test=t;S.i=0;S.ans=t.questions.map(()=>null);S.cut=t.questions.map(()=>[]);S.flag=t.questions.map(()=>false);S.left=t.minutes*60;S.end=Date.now()+S.left*1000;S.showClock=true;S.view="test";render()};
+}
+function testView(){
+  const t=S.test,q=t.questions[S.i],n=t.questions.length;
+  let b=`<div class="top"><div><b>${esc(t.title)}</b><div class="mute" style="font-size:14px">${esc(S.name)}</div></div>`;
+  b+=S.timer?`<div class="timer"><span id="clk" ${S.showClock?"":'hidden'}>${fmt(Math.max(S.left,0))}</span><button id="hc">${S.showClock?"Yashirish":"Ko'rsatish"}</button></div>`:`<div class="mute">Taymersiz</div>`;
+  b+=`<button class="btn ghost" id="cb" style="padding:6px 14px">Kalkulyator</button></div><div class="wrap"><div class="qhead"><span><span class="qnum">${S.i+1}</span> &nbsp;<button class="flag ${S.flag[S.i]?"on":""}" id="fl">⚑ ${S.flag[S.i]?"Belgilangan":"Ko'rib chiqish uchun belgilash"}</button></span></div><p>${esc(q.q)}</p>`;
+  if(q.t==="mc"){b+=q.o.map((o,k)=>`<div class="choice ${S.cut[S.i].includes(k)?"cut":""}"><label class="${S.ans[S.i]===k?"on":""}"><input type="radio" name="a" hidden ${S.ans[S.i]===k?"checked":""} data-k="${k}"><span class="letter">${L[k]}</span><span class="t">${esc(o)}</span></label><button class="cutb" data-c="${k}" title="Variantni chizib tashlash" aria-label="Variantni chizib tashlash">${S.cut[S.i].includes(k)?"↺":"✕"}</button></div>`).join("")}
+  else b+=`<p class="mute">Javobni o'zingiz yozing (butun son, kasr yoki o'nlik).</p><input type="text" id="sp" inputmode="decimal" value="${esc(S.ans[S.i]||"")}" placeholder="Javob"><p class="mute">Siz yozgan javob: <b>${esc(S.ans[S.i]||"—")}</b></p>`;
+  b+=`</div><div class="foot"><b>${esc(S.name)}</b><button class="btn ghost" id="qn">Savol ${S.i+1} / ${n} ▴</button><span><button class="btn ghost" id="pv" ${S.i===0?"disabled":""}>Orqaga</button> <button class="btn" id="nx">${S.i===n-1?"Yakunlash":"Keyingi"}</button></span></div>`;
+  app.innerHTML=b;
+  const hc=$("#hc");if(hc)hc.onclick=()=>{S.showClock=!S.showClock;testView()};
+  $("#fl").onclick=()=>{S.flag[S.i]=!S.flag[S.i];testView()};
+  app.querySelectorAll("[data-k]").forEach(r=>r.onchange=()=>{S.ans[S.i]=+r.dataset.k;testView()});
+  app.querySelectorAll("[data-c]").forEach(c=>c.onclick=()=>{const k=+c.dataset.c,a=S.cut[S.i];a.includes(k)?a.splice(a.indexOf(k),1):a.push(k);if(S.ans[S.i]===k)S.ans[S.i]=null;testView()});
+  const sp=$("#sp");if(sp)sp.oninput=e=>{S.ans[S.i]=e.target.value;sp.nextElementSibling.querySelector("b").textContent=e.target.value||"—"};
+  $("#pv").onclick=()=>{S.i--;testView()};
+  $("#nx").onclick=()=>{S.i===n-1?review():(S.i++,testView())};
+  $("#qn").onclick=review;$("#cb").onclick=toggleCalc;
+}
+function review(){
+  const t=S.test,n=t.questions.length,m=document.createElement("div");m.className="modal";
+  const un=S.ans.filter(a=>a===null||a==="").length;
+  m.innerHTML=`<div role="dialog"><h2>${esc(t.title)}</h2><p class="mute">Savolga o'tish uchun raqamni bosing.</p><div class="grid">${t.questions.map((_,k)=>`<button class="gn ${S.ans[k]!==null&&S.ans[k]!==""?"done":""} ${k===S.i?"cur":""} ${S.flag[k]?"fl":""}" data-g="${k}">${k+1}</button>`).join("")}</div>
+  <p class="mute">${un?`Javobsiz savollar: ${un} ta.`:"Hamma savolga javob berildi."}</p>
+  <p style="display:flex;gap:10px;justify-content:flex-end"><button class="btn ghost" id="bk">Testga qaytish</button><button class="btn" id="fin">Topshirish</button></p></div>`;
+  document.body.appendChild(m);
+  m.querySelectorAll("[data-g]").forEach(g=>g.onclick=()=>{S.i=+g.dataset.g;m.remove();testView()});
+  $("#bk").onclick=()=>m.remove();
+  $("#fin").onclick=()=>{m.remove();finish()};
+}
+async function finish(){
+  if(S.view!=="test")return;
+  S.view="busy";clearInterval(S.tick);
+  const t=S.test,n=t.questions.length;
+  const det=t.questions.map((q,k)=>({a:S.ans[k],ok:isOk(q,S.ans[k])}));
+  const raw=det.filter(d=>d.ok).length;
+  const r={id:Date.now()+"-"+Math.random().toString(36).slice(2,7),uid:S.uid||null,name:S.name.trim(),testId:t.id,title:t.title,raw,n,score:scaled(raw,n),timer:S.timer,at:Date.now(),det};
+  app.innerHTML=`<div class="wrap"><p>Natija saqlanmoqda…</p></div>`;
+  await saveResult(r);
+  S.res=r;S.admin=false;S.back="tests";S.view="result";render();
+}
+function resultView(){
+  const r=S.res,t=TESTS.find(x=>x.id===r.testId)||S.test;
+  let h=`<div class="wrap"><h1>${esc(r.name)}</h1><p class="mute">${esc(r.title)} · ${r.timer?"taymer bilan":"taymersiz"}</p>
+  <div class="card"><div class="big">${r.score}</div><p class="mute" style="margin:6px 0 0">taxminiy SAT balli (200–800) · to'g'ri javoblar: ${r.raw} / ${r.n}</p></div>`;
+  if(S.note&&!S.admin)h+=`<p class="mute">${esc(S.note)}</p>`;
+  h+=t.questions.map((q,k)=>{const d=r.det[k],yours=d.a===null||d.a===""?"javob berilmagan":q.t==="mc"?L[d.a]+") "+q.o[d.a]:d.a,right=q.t==="mc"?L[q.a]+") "+q.o[q.a]:q.a[0];
+    return `<div class="rev ${d.ok?"r":"w"}"><b>${k+1}.</b> ${esc(q.q)}<br>Javob: <span class="${d.ok?"ok":"bad"}">${esc(yours)}</span>${d.ok?"":` · To'g'ri javob: <b>${esc(right)}</b>`}<br><span class="mute">${esc(q.e)}</span></div>`}).join("");
+  h+=`<p><button class="btn" id="hm">Bosh sahifa</button></p></div>`;
+  app.innerHTML=h;
+  $("#hm").onclick=()=>{S.view="home";S.tab=S.back||"tests";render()};
+}
+init();
+</script>
+</body>
+</html>
